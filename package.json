@@ -12,7 +12,9 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "deploy:demo": "cd demo && npm run deploy && cd ..",
+    "deploy": "npm run deploy:npm && npm run deploy:demo",
+    "deploy:demo": "npm run build && cd demo && npm run deploy && cd ..",
+    "deploy:npm": "npm run build && npm login && npm publish",
     "postinstall": "cd demo && npm i && cd ..",
     "start": "npm run  && concurrently \"rollup -c -w\" \"cd demo && npm run dev\"",
     "test": "npm run build"
@@ -30,5 +32,8 @@
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^9.1.8",
     "rollup-plugin-node-resolve": "^3.4.0"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
