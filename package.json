@@ -1,0 +1,34 @@
+{
+  "name": "grid-in-js",
+  "version": "0.0.1",
+  "description": "Make a reliable CSS Grid framework at the snap of a function.",
+  "main": "dist/grid-in-js.cjs.js",
+  "module": "dist/grid-in-js.esm.js",
+  "browser": "dist/grid-in-js.umd.js",
+  "homepage": "https://grid-in-js.now.sh",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seejamescode/grid-in-js.git"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "deploy:demo": "cd demo && npm run deploy && cd ..",
+    "postinstall": "cd demo && npm i && cd ..",
+    "start": "npm run  && concurrently \"rollup -c -w\" \"cd demo && npm run dev\"",
+    "test": "npm run build"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "concurrently": "^4.0.1",
+    "live-server": "^1.2.0",
+    "onchange": "^4.1.0",
+    "rollup": "^0.66.4",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.1.8",
+    "rollup-plugin-node-resolve": "^3.4.0"
+  }
+}

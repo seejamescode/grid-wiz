@@ -1,0 +1,40 @@
+{
+  "name": "grid-in-js-demo",
+  "version": "0.0.1",
+  "scripts": {
+    "deploy": "npm run build && now && now alias && now scale grid-in-js.now.sh 1 1 && now rm grid-in-js -s -y",
+    "dev": "next -p 4000",
+    "build": "next build",
+    "now-build": "true",
+    "start": "next start"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "file-saver": "^2.0.0-rc.3",
+    "markdown-to-jsx": "^6.7.4",
+    "next": "^7.0.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-json-view": "^1.19.1",
+    "styled-components": "^3.4.10"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.8.0",
+    "raw-loader": "^0.5.1"
+  },
+  "babel": {
+    "presets": [
+      "next/babel"
+    ],
+    "plugins": [
+      [
+        "styled-components",
+        {
+          "ssr": true,
+          "displayName": true,
+          "preprocess": false
+        }
+      ]
+    ]
+  }
+}
