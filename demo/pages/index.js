@@ -93,6 +93,7 @@ injectGlobal`
 
     table {
       display: block;
+      overflow: auto;
       width: 100%;
     }
 

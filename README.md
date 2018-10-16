@@ -18,7 +18,7 @@ Different experiences have different browser requirements based on the users vis
 
 The truth is that the name Grid-in-JS is a joke to weed out critics that don’t try stuff before critiquing it. However, we get a lot of flexibility by writing this package in isomorphic JavaScript:
 
-- Wanna configure your grid framework and just copy and paste the CSS straight from this project’s website? Go ahead.
+- Wanna configure your grid framework and just copy and paste the CSS straight from [this project’s website](https://grid-in-js.now.sh)? Go ahead.
 - Need to distribute your grid framework to multiple projects with a Node package? Add Grid-in-JS as a dependency and compile it there.
 - Are you _bleeding-edge_ enough to compile the grid framework directly in your client-side code? Now we’re cooking!
 
