@@ -30,7 +30,8 @@ const grid = function(breakpoints, maxWidth, prefix, compat) {
       `)}
     }
 
-    .${prefix}grid .${prefix}grid {
+    .${prefix}grid .${prefix}grid,
+    .${prefix}row .${prefix}grid {
       margin-left: 0;
       margin-right: 0;
       padding: 0;

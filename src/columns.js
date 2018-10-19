@@ -79,19 +79,22 @@ const columns = function(breakpoints, prefix, compat) {
               
                 ${compat.CSSVariables(
                   `
-                  .${prefix}offset-${breakpoint.name}-${column + 1} {
+                  .bx--grid .${prefix}offset-${breakpoint.name}-${column + 1},
+                  .bx--row .${prefix}offset-${breakpoint.name}-${column + 1} {
                   margin-left: calc(${((column + 1) / breakpoint.columns) *
                     100}% / var(--${prefix}x-col-percentage));
                   }`
                 )}
                 ${compat.DisplayGrid(
                   `
-                  .${prefix}offset-${breakpoint.name}-${column + 1} {
+                  .bx--grid .${prefix}offset-${breakpoint.name}-${column + 1},
+                  .bx--row .${prefix}offset-${breakpoint.name}-${column + 1} {
                     grid-column-start: calc(${
                       column === 0 ? `` : `${column + 1} * `
                     }var(--${prefix}x-bp) + 1);
                 }`,
-                  `.${prefix}offset-${breakpoint.name}-${column +
+                  `.bx--grid .${prefix}offset-${breakpoint.name}-${column + 1},
+                    .bx--row .${prefix}offset-${breakpoint.name}-${column +
                     1} { margin-left: initial; }`
                 )}
             `
