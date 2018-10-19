@@ -1,6 +1,6 @@
 {
   "name": "grid-in-js",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Make a reliable CSS Grid framework at the snap of a function.",
   "main": "dist/grid-in-js.cjs.js",
   "module": "dist/grid-in-js.esm.js",

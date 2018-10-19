@@ -34,7 +34,8 @@ const grid = function(breakpoints, maxWidth, prefix, compat) {
     .${prefix}row .${prefix}grid {
       margin-left: 0;
       margin-right: 0;
-      padding: 0;
+      padding-left: 0;
+      padding-right: 0;
     }
 
     ${breakpoints
