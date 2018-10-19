@@ -1,6 +1,6 @@
 {
   "name": "grid-in-js",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Make a reliable CSS Grid framework at the snap of a function.",
   "main": "dist/grid-in-js.cjs.js",
   "module": "dist/grid-in-js.esm.js",
@@ -15,7 +15,7 @@
     "deploy": "npm run deploy:npm && npm run deploy:demo",
     "deploy:demo": "npm run build && cd demo && npm run deploy && cd ..",
     "deploy:npm": "npm run build && npm login && npm publish",
-    "postinstall": "cd demo && npm i && cd ..",
+    "prepare": "npm run build && cd demo && npm i && cd ..",
     "start": "npm run  && concurrently \"rollup -c -w\" \"cd demo && npm run dev\"",
     "test": "npm run build"
   },

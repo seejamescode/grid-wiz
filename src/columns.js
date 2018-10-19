@@ -1,8 +1,18 @@
 const columns = function(breakpoints, prefix, compat) {
   return `
   /* By default, span all of the grid columns */
-  ${compat.CSSVariables(`.${prefix}grid * {
-    flex: 100%;
+  ${compat.CSSVariables(`
+    .${prefix}grid > *,
+    .${prefix}row > * {
+      flex: 100%;
+    }
+  `)}
+
+  /* By default, span all of the grid columns */
+  ${compat.DisplayGrid(`
+  .${prefix}grid > *,
+  .${prefix}row > * {
+    grid-column-end: span var(--${prefix}x-bp-columns);
   }`)}
 
   ${breakpoints
@@ -11,10 +21,11 @@ const columns = function(breakpoints, prefix, compat) {
       ${compat.DisplayGrid(`
         /* Grid columns */
         .${prefix}grid,
-        .${prefix}row,
-        .${prefix}grid {
+        .${prefix}row {
           grid-template-columns: repeat(auto-fill, calc(${100 /
             breakpoint.columns}% / var(--${prefix}x-col-columns)));
+
+            --${prefix}x-bp-columns: ${breakpoint.columns};
         }
         `)}
 
@@ -22,11 +33,6 @@ const columns = function(breakpoints, prefix, compat) {
           padding-left: var(--${prefix}x-gutter);
           padding-right: var(--${prefix}x-gutter);
         }
-
-        /* By default, span all of the grid columns */
-        ${compat.DisplayGrid(`* {
-          grid-column-end: span ${breakpoint.columns};
-        }`)}
 
         [class*="${prefix}col-${breakpoint.name}"] {
           display: initial;
