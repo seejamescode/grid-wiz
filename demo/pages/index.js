@@ -3,6 +3,7 @@ import React from "react";
 import styled, { injectGlobal } from "styled-components";
 import saveAs from "file-saver";
 import Markdown from "markdown-to-jsx";
+import { IoIosArrowDropleftCircle, IoIosArrowDropright } from "react-icons/io";
 import gridInJS from "../../dist/grid-in-js.umd";
 import readme from "../../README.md";
 const ReactJson = dynamic(() => import("react-json-view"), {
@@ -68,6 +69,8 @@ injectGlobal`
   }
 
   .markdown {
+      outline: none;
+
     code {
       background: #f1f1f1;
     }
@@ -114,13 +117,31 @@ const Aside = styled.aside`
   height: 100%;
   display: flex;
   flex-direction: column;
+  margin-left: 0;
+  overflow-y: auto;
   padding: 1rem;
-  position: fixed;
+  position: ${props => (props.navCollapsed ? null : "fixed")};
+  transition: margin-left 100ms ease-in;
   width: 320px;
 
   @media (min-width: 640px) {
     position: relative;
   }
+
+  > *:not(nav) {
+    margin-right: ${props => (props.navCollapsed ? "2.5rem" : null)};
+    transition: margin-right 100ms ease-in;
+  }
+`;
+
+const AsideNav = styled.nav`
+  margin-bottom: 1.5rem;
+`;
+
+const AsideNavFlex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: 2rem;
 `;
 
 const BreakpointName = styled.h3`
@@ -136,6 +157,30 @@ const Code = styled.code`
   background: white;
   overflow: auto;
   padding: 1rem;
+`;
+
+const CollapseButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+
+  svg {
+    height: 1.4rem;
+    width: 1.4rem;
+  }
+
+  :hover {
+    svg {
+      fill: ${props => (props.active ? null : "lightgrey")};
+    }
+  }
+
+  :focus {
+    svg {
+      fill: ${props => (props.active ? null : "grey")};
+    }
+    outline: none;
+  }
 `;
 
 const GridTitle = styled.h2`
@@ -163,7 +208,15 @@ const TabButton = styled.button`
   color: ${props => (props.active ? "white" : null)};
   display: inline-block;
   font-size: 1.5rem;
-  height: 2rem;
+
+  :hover {
+    background: ${props => (props.active ? null : "lightgrey")};
+  }
+
+  :focus {
+    background: ${props => (props.active ? null : "grey")};
+    outline: none;
+  }
 `;
 
 const Tabs = styled.div`
@@ -178,6 +231,7 @@ const Title = styled.h1`
 export default class extends React.Component {
   state = {
     config: initialconfig,
+    navCollapsed: false,
     tab: "editor"
   };
 
@@ -205,21 +259,46 @@ export default class extends React.Component {
     return (
       <React.Fragment>
         <style dangerouslySetInnerHTML={{ __html: css }} />
-        <Aside className="aside">
-          <Tabs>
-            <TabButton
-              active={this.state.tab === "editor"}
-              onClick={() => this.setState({ tab: "editor" })}
-            >
-              Editor
-            </TabButton>
-            <TabButton
-              active={this.state.tab === "code"}
-              onClick={() => this.setState({ tab: "code" })}
-            >
-              Code
-            </TabButton>
-          </Tabs>
+        <Aside
+          className="aside"
+          navCollapsed={this.state.navCollapsed}
+          style={{
+            marginLeft: this.state.navCollapsed ? "-16.5rem" : null
+          }}
+        >
+          <AsideNav>
+            <AsideNavFlex>
+              <Tabs>
+                <TabButton
+                  active={this.state.tab === "editor"}
+                  disabled={this.state.tab === "editor"}
+                  onClick={() => this.setState({ tab: "editor" })}
+                >
+                  Editor
+                </TabButton>
+                <TabButton
+                  active={this.state.tab === "code"}
+                  disabled={this.state.tab === "code"}
+                  onClick={() => this.setState({ tab: "code" })}
+                >
+                  Code
+                </TabButton>
+              </Tabs>
+              <CollapseButton
+                onClick={() =>
+                  this.setState(state => {
+                    return { navCollapsed: !state.navCollapsed };
+                  })
+                }
+              >
+                {this.state.navCollapsed ? (
+                  <IoIosArrowDropright />
+                ) : (
+                  <IoIosArrowDropleftCircle />
+                )}
+              </CollapseButton>
+            </AsideNavFlex>
+          </AsideNav>
           {this.state.tab === "editor" ? (
             <React.Fragment>
               <p>
@@ -239,7 +318,8 @@ export default class extends React.Component {
                 style={{
                   background: "white",
                   overflowY: "auto",
-                  margin: "1rem 0",
+                  marginBottom: "1rem",
+                  marginTop: "1rem",
                   padding: "1rem"
                 }}
               />
@@ -264,7 +344,7 @@ export default class extends React.Component {
         </Aside>
         <Main>
           <div className={`${prefix}grid`}>
-            <Markdown className="markdown">{readme}</Markdown>
+            <Markdown className={`markdown ${prefix}col`}>{readme}</Markdown>
             <GridTitle>Your Custom Grid Demo</GridTitle>
             {breakpoints.map(bp => {
               const columns = [];
