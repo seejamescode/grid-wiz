@@ -1,0 +1,20 @@
+{
+  "name": "Grid-in-JS",
+  "short_name": "Grid-in-JS",
+  "display": "standalone",
+  "description": "Make a reliable CSS Grid framework at the snap of a function.",
+  "icons": [
+    {
+      "src": "static/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "static/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#fff",
+  "theme_color": "#f1faff"
+}

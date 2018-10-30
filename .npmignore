@@ -1,6 +1,6 @@
 .next
-demo
 dist
 node_modules
 out
 tmp
+website

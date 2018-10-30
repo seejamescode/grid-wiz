@@ -12,11 +12,11 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "deploy": "npm run deploy:npm && npm run deploy:demo",
-    "deploy:demo": "npm run build && cd demo && npm run deploy && cd ..",
+    "deploy": "npm run deploy:npm && npm run deploy:website",
+    "deploy:website": "npm run build && cd website && npm run deploy && cd ..",
     "deploy:npm": "npm run build && npm login && npm publish",
-    "prepare": "npm run build && cd demo && npm i && cd ..",
-    "start": "npm run  && concurrently \"rollup -c -w\" \"cd demo && npm run dev\"",
+    "prepare": "npm run build && cd website && npm i && cd ..",
+    "start": "npm run  && concurrently \"rollup -c -w\" \"cd website && npm run dev\"",
     "test": "npm run build"
   },
   "author": "",
@@ -35,5 +35,6 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {}
 }

@@ -1,5 +1,5 @@
 {
-  "name": "grid-in-js-demo",
+  "name": "grid-in-js-website",
   "version": "0.0.1",
   "description": "Website to show off capabilities of Grid-in-JS.",
   "homepage": "https://grid-in-js.now.sh",
@@ -13,13 +13,14 @@
     "dev": "next -p 4000",
     "build": "next build",
     "now-build": "true",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js"
   },
   "license": "UNLICENSED",
   "dependencies": {
     "file-saver": "^2.0.0-rc.3",
     "markdown-to-jsx": "^6.7.4",
     "next": "^7.0.2",
+    "next-offline": "^3.0.3",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-icons": "^3.2.2",
