@@ -28,7 +28,7 @@ This package lets you configure your grid’s browser compatibility. The trade-o
 
 | Support Mode       | Chrome | Edge   | Firefox | IE  | Opera | Safari |                     |                                                                                           |
 | ------------------ | ------ | ------ | ------- | --- | ----- | ------ | ------------------- | ----------------------------------------------------------------------------------------- |
-| `displayFlex`      | 29     | 12     | 20      | 11  | 12.1  | 9      | Work-in-Progress    | [Details](https://developer.mozilla.org/en-US/docs/Web/CSS/display#Browser_compatibility) |
+| `displayFlex`      | 29     | 12     | 20      | 11  | 12.1  | 9      | Available           | [Details](https://developer.mozilla.org/en-US/docs/Web/CSS/display#Browser_compatibility) |
 | `cssVariables`     | 49     | 15     | 31      | NA  | 36    | 9.1    | Available           | [Details](https://developer.mozilla.org/en-US/docs/Web/CSS/var#Browser_compatibility)     |
 | `displayGrid`      | 57     | 16\*\* | 52      | NA  | 44    | 10.1   | Available (Default) | [Details](https://developer.mozilla.org/en-US/docs/Web/CSS/display#Browser_compatibility) |
 | `displaySubgrid`\* | ?      | ?      | ?       | NA  | ?     | ?      | Work-in-Progress    | [Details](https://developer.mozilla.org/en-US/docs/Web/CSS/display#Browser_compatibility) |

@@ -1,5 +1,6 @@
 const colors = {
-  accent: "#7cfeb8",
+  accent0: "#7cfeb8",
+  accent1: "#f97cfe",
   background0: "#082023",
   background1: "#000502",
   background2: "#002c15",

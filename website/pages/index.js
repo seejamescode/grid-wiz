@@ -7,7 +7,9 @@ import Header from "../components/Header";
 const Container = styled.div`
   display: flex;
   height: 100%;
-  overflow-y: hidden;
+
+  /* Bug fix for IE 11 aside, not related to grid-in-js */
+  overflow: hidden;
 `;
 
 const Main = styled.main`

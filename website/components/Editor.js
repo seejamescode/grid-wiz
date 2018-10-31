@@ -27,6 +27,8 @@ const Aside = styled.aside`
 
   @media (min-width: 640px) {
     margin-left: 0 !important;
+    left: 0;
+    position: relative;
     position: sticky;
   }
 
@@ -316,10 +318,15 @@ export default class extends React.Component {
                 <NotesTitle>Notes</NotesTitle>
                 <Notes>
                   <li>
-                    Currently supported `support` values: `cssVariables`,
-                    `displayGrid`
+                    <code>support</code> options in order of most browser
+                    support to least: <code>displayFlex</code>,{" "}
+                    <code>cssVariables</code>, <code>displayGrid</code>
                   </li>
-                  <li>Subgrid can not be disabled yet</li>
+                  <li>
+                    Disabling <code>progressive</code> and <code>subgrid</code>{" "}
+                    options and decreasing browser support will reduce file
+                    sizes
+                  </li>
                 </Notes>
               </React.Fragment>
             ) : null}

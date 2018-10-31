@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import colors from "../utils/color";
 import { GridConsumer } from "./GridProvider";
 import PageContent from "./PageContent";
 
@@ -9,13 +10,18 @@ const BreakpointName = styled.h3`
 
 const BreakpointDesc = styled.p`
   margin-top: 0;
-  max-width: 300px;
+  max-width: 400px;
 `;
 
 const Container = styled.div`
   [class*="col-"] {
-    outline: 2px solid #7cfeb8;
+    outline: 2px solid ${colors.accent0};
     outline-offset: -1px;
+
+    [class*="col-"] {
+      outline-color: ${colors.accent1};
+      z-index: 1;
+    }
   }
 `;
 
@@ -76,6 +82,67 @@ export default class extends React.Component {
                       </div>
                     </div>
                   </React.Fragment>
+                );
+              })}
+
+              <BreakpointName className={`${state.config.prefix}col`}>
+                Subgrids
+                {!state.config.subgrid ? " (Disabled)" : ""}
+              </BreakpointName>
+              <BreakpointDesc className={`${state.config.prefix}col`}>
+                {state.config.subgrid
+                  ? `You can add a .${state.config.prefix}
+                grid or .${state.config.prefix}
+                row to any col item and children will know how many columns are
+                available.`
+                  : `Since you have the subgrid option disabled, adding .${
+                      state.config.prefix
+                    }
+                grid or .${state.config.prefix}
+                row to any col item will provide the original amount of columns. If enabled, the embedded grid would know exactly how many columns are left to use.`}
+              </BreakpointDesc>
+              {state.config.breakpoints.map((bp, i) => {
+                const columnsAvailable = bp.columns - 1;
+                const classNameSubgrid = `${state.config.prefix}row`;
+                const classNameWidth = `${state.config.prefix}col-${bp.name}-1`;
+                const classNameWidthSubgrid = `${state.config.prefix}col-${
+                  bp.name
+                }-${columnsAvailable}`;
+                const columnsSubgridLeft = Math.floor(columnsAvailable / 2);
+                const columnsSubgridRight =
+                  columnsAvailable - columnsSubgridLeft;
+                const classNameSubgridLeft = `${state.config.prefix}col-${
+                  bp.name
+                }-${columnsSubgridLeft}`;
+                const classNameSubgridRight = `${state.config.prefix}col-${
+                  bp.name
+                }-${columnsSubgridRight}`;
+
+                return (
+                  <div
+                    className={`${state.config.prefix}row`}
+                    key={`${bp.name}-subgrid`}
+                  >
+                    <div className={`${classNameWidth}`}>
+                      <p>.{classNameWidth}</p>
+                    </div>
+                    <div
+                      className={`${classNameWidthSubgrid} ${classNameSubgrid}`}
+                    >
+                      <div className={`${classNameSubgridLeft}`}>
+                        <p>
+                          .{classNameWidthSubgrid}.{classNameSubgrid} > .
+                          {classNameSubgridLeft}
+                        </p>
+                      </div>
+                      <div className={`${classNameSubgridRight}`}>
+                        <p>
+                          .{classNameWidthSubgrid}.{classNameSubgrid} > .
+                          {classNameSubgridRight}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 );
               })}
 

@@ -9,29 +9,27 @@ const grid = function(breakpoints, maxWidth, prefix, compat) {
       box-sizing: border-box;
     }
 
-    /* Defines our initial grid context, including width, max-width, and padding constraints based off of the given breakpoint. */
     .${prefix}grid,
-    .${prefix}row,
-    .${prefix}grid {
-
-      ${compat.CSSVariables(`
-        /* percentage width of item */
-        --${prefix}x-col-percentage: 1;
-
+    .${prefix}row {
+      ${compat.DisplayFlex(`
         display: flex;
         flex-wrap: wrap;
+      `)}
+
+      ${compat.CSSVariablesOnly(`
+        /* percentage width of item */
+        --${prefix}x-col-percentage: 1;
       `)}
 
       ${compat.DisplayGrid(`
         /* column width of item */
         --${prefix}x-col-columns: 1;
-
         display: grid;
       `)}
     }
 
     .${prefix}grid .${prefix}grid,
-    .${prefix}row .${prefix}grid {
+    .${prefix}grid .${prefix}row {
       margin-left: 0;
       margin-right: 0;
       padding-left: 0;

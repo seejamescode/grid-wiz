@@ -29,8 +29,10 @@ class GridProvider extends Component {
                     const prevConfigBP = this.state.config.breakpoints.find(
                       prevBP => bp.name === prevBP.name
                     );
-                    console.log(prevConfigBP);
+
                     return {
+                      name: bp.name ? bp.name.toString() : prevConfigBP.name,
+                      size: bp.size ? parseFloat(bp.size) : prevConfigBP.size,
                       columns: bp.columns
                         ? parseInt(bp.columns)
                         : prevConfigBP.columns,
@@ -39,9 +41,7 @@ class GridProvider extends Component {
                         : prevConfigBP.gutter,
                       margin: bp.margin
                         ? parseFloat(bp.margin)
-                        : prevConfigBP.margin,
-                      name: bp.name ? bp.name.toString() : prevConfigBP.name,
-                      size: bp.size ? parseFloat(bp.size) : prevConfigBP.size
+                        : prevConfigBP.margin
                     };
                   }
                 })
@@ -54,6 +54,7 @@ class GridProvider extends Component {
               config.progressive && config.progressive.toString() === "true"
                 ? true
                 : false;
+            console.log(config.subgrid);
             const subgrid =
               config.subgrid && config.subgrid.toString() === "true"
                 ? true
@@ -63,13 +64,12 @@ class GridProvider extends Component {
               : "displayGrid";
 
             const configValidated = {
-              ...config,
-              breakpoints,
-              maxWidth,
               prefix,
+              support,
+              maxWidth,
               progressive,
               subgrid,
-              support
+              breakpoints
             };
 
             this.setState({
