@@ -14,24 +14,55 @@ const Container = styled.div`
   [class*="col-"] {
     outline: 2px solid ${colors.accent0};
     outline-offset: -1px;
-
-    [class*="col-"] {
-      outline-color: ${colors.accent1};
-      z-index: 1;
-    }
   }
 `;
 
 const SectionDesc = styled.p`
   margin-bottom: 2rem;
   margin-top: 0;
-  max-width: 400px;
+  max-width: 450px;
 `;
 
 const SectionName = styled.h2`
   font-size: 1.5rem;
   margin-bottom: 0;
   margin-top: 6rem;
+`;
+
+const Subgrid = styled.div`
+  [class*="col-"] {
+    position: relative;
+    z-index: 2;
+
+    :after {
+      content: "";
+      height: calc(100% - 4px);
+      left: 3px;
+      outline: 2px solid ${colors.accent1};
+      position: absolute;
+      top: 3px;
+      width: calc(100% - 6px);
+
+      @media (min-width: ${props => props.size}px) {
+        height: calc(100% - 6px);
+        left: 3px;
+        top: 3px;
+        width: calc(100% - 4px);
+      }
+    }
+
+    :last-of-type {
+      :after {
+        top: 1px;
+
+        @media (min-width: ${props => props.size}px) {
+          left: 1px;
+          top: 3px;
+          width: calc(100% - 4px);
+        }
+      }
+    }
+  }
 `;
 
 export default class extends React.Component {
@@ -151,8 +182,9 @@ export default class extends React.Component {
                     <div className={`${classNameWidth}`}>
                       <p>.{classNameWidth}</p>
                     </div>
-                    <div
+                    <Subgrid
                       className={`${classNameWidthSubgrid} ${classNameSubgrid}`}
+                      size={bp.size}
                     >
                       <div className={`${classNameSubgridLeft}`}>
                         <p>
@@ -166,7 +198,7 @@ export default class extends React.Component {
                           {classNameSubgridRight}
                         </p>
                       </div>
-                    </div>
+                    </Subgrid>
                   </div>
                 );
               })}

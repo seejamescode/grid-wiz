@@ -5,8 +5,8 @@ _Make a reliable CSS Grid framework at the snap of a function._
 ## Table of Contents
 
 - [Benefits](#benefits)
-- [Instructions](#instructions)
 - [Browser Compatibility](#browser-compatibility)
+- [Instructions](#instructions)
 - [Contribute](#contribute)
 
 ## Benefits

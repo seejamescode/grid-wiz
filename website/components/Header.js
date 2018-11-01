@@ -19,11 +19,20 @@ const TabAnchor = styled.a`
   margin-right: -1px;
   outline: 2px solid silver;
   outline-offset: -1px;
-  padding: 1rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
   position: relative;
   text-decoration: none;
 
-  :focus {
+  ${props =>
+    props.breakpoints.map(
+      breakpoint => `
+    @media (min-width: ${breakpoint.size}px) {
+      padding-left: ${breakpoint.gutter / 2}px;
+      padding-right: ${breakpoint.gutter / 2}px;
+    }
+  `
+    )} :focus {
     outline-color: blue;
     z-index: 2;
   }
@@ -64,6 +73,10 @@ const Tabs = styled.div`
     width: 100%;
     z-index: 0;
   }
+
+  [class*="col"] {
+    padding: 0 !important;
+  }
 `;
 
 class Header extends React.Component {
@@ -74,21 +87,28 @@ class Header extends React.Component {
           <Container>
             <div className={`${state.config.prefix}grid`}>
               <Markdown prefix={state.config.prefix}>
-                {`<sup>v${meta.version}</sup>
-
-${readme.split("##")[0]}`}
+                {`${readme.split("##")[0]}
+v${
+                  meta.version
+                } | [GitHub](https://github.com/seejamescode/grid-in-js) | [npm](https://www.npmjs.com/package/grid-in-js)
+`}
               </Markdown>
             </div>
             <Tabs>
               <div className={`${state.config.prefix}grid`}>
                 <div className={`${state.config.prefix}col`}>
                   <Link href="/">
-                    <TabAnchor current={this.props.router.pathname} href="/">
+                    <TabAnchor
+                      breakpoints={state.config.breakpoints}
+                      current={this.props.router.pathname}
+                      href="/"
+                    >
                       Live Demo
                     </TabAnchor>
                   </Link>
                   <Link href="/docs">
                     <TabAnchor
+                      breakpoints={state.config.breakpoints}
                       current={this.props.router.pathname}
                       href="/docs"
                     >
