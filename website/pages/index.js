@@ -16,7 +16,6 @@ const Main = styled.main`
   flex: 1;
   margin-right: 3.5rem;
   overflow-y: scroll;
-  padding-bottom: 3rem;
 
   @media (min-width: 640px) {
     margin-right: 0;

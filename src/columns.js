@@ -144,14 +144,14 @@ const columns = function(breakpoints, prefix, compat) {
               `)}
               
               ${compat.Subgrid(`
-              ${compat.CSSVariablesOnly(`
-              .${prefix}col-${breakpoint.name}-${column + 1} * {
-                --${prefix}x-col-percentage: ${(
-                (column + 1) /
-                breakpoint.columns
-              ).toFixed(4)};
-              }
-              `)}
+                ${compat.CSSVariablesOnly(`
+                  .${prefix}col-${breakpoint.name}-${column + 1} * {
+                    --${prefix}x-col-percentage: ${(
+                  (column + 1) /
+                  breakpoint.columns
+                ).toFixed(4)};
+                  }
+                `)}
               `)}
 
               ${
@@ -190,7 +190,7 @@ const columns = function(breakpoints, prefix, compat) {
               ? compat.CSSVariables(`
                   [class*="${prefix}col-${subBreakpoint.name}"] {
                     --${prefix}x-bp: ${Number(
-                  (breakpoint.columns / subBreakpoint.columns).toFixed(4)
+                  (breakpoint.columns / subBreakpoint.columns).toFixed(0)
                 )};
                   }
 

@@ -187,6 +187,14 @@ const DownloadButton = styled.button`
 
 const Notes = styled.ul`
   padding-left: 1rem;
+
+  li {
+    margin-top: 0.5rem;
+
+    :first-of-type {
+      margin-top: 0;
+    }
+  }
 `;
 
 const NotesTitle = styled.h4`
@@ -291,12 +299,6 @@ export default class extends React.Component {
             </AsideNav>
             {this.state.tab === "editor" ? (
               <React.Fragment>
-                <p>
-                  Edit the object below to generate your grid framework straight
-                  in the browser. Click "Code" to download the CSS. Scroll below
-                  documentation to see a live demo of your generated grid
-                  framework.
-                </p>
                 <ReactJson
                   displayDataTypes={false}
                   displayObjectSize={false}
@@ -307,25 +309,36 @@ export default class extends React.Component {
                   src={state.config}
                   style={{
                     background: "white",
-                    marginBottom: "1rem",
-                    marginTop: "1rem",
                     minHeight: "10rem",
                     overflowY: "auto",
                     padding: "1rem"
                   }}
                   theme="summerfruit:inverted"
                 />
-                <NotesTitle>Notes</NotesTitle>
+                <NotesTitle>Tips</NotesTitle>
                 <Notes>
                   <li>
-                    <code>support</code> options in order of most browser
-                    support to least: <code>displayFlex</code>,{" "}
-                    <code>cssVariables</code>, <code>displayGrid</code>
+                    <small>
+                      To help column widths scale between breakpoints, make sure
+                      the next breakpoint’s <code>column</code> is divisible by
+                      the previous breakpoint’s <code>column</code>.
+                    </small>
                   </li>
                   <li>
-                    Disabling <code>progressive</code> and <code>subgrid</code>{" "}
-                    options and decreasing browser support will reduce file
-                    sizes
+                    <small>
+                      Disabling <code>progressive</code> and{" "}
+                      <code>subgrid</code> options and decreasing browser
+                      compatibility will reduce file sizes.
+                    </small>
+                  </li>
+                  <li>
+                    <small>
+                      For <code>support</code>, <code>displayGrid</code> has the
+                      smallest file size and browser support.{" "}
+                      <code>displayFlex</code> has the largest file size and
+                      browser support. <code>cssVariables</code> is in the
+                      middle.
+                    </small>
                   </li>
                 </Notes>
               </React.Fragment>

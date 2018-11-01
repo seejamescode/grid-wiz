@@ -5,6 +5,14 @@ import Markdown from "markdown-to-jsx";
 const MarkdownStyled = styled(Markdown)`
   position: relative;
 
+  pre {
+    background: #022c33;
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 1rem;
+    width: max-content;
+  }
+
   h1 {
     font-size: 3rem;
     margin: -0.5rem 0 0 -0.25rem;
@@ -21,11 +29,7 @@ const MarkdownStyled = styled(Markdown)`
 
   h3 {
     font-size: 1rem;
-    margin-top: 4rem;
-
-    :first-of-type {
-      margin-top: 1rem;
-    }
+    margin-top: 2rem;
   }
 
   h5,

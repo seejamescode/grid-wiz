@@ -2,15 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import colors from "../utils/color";
 import { GridConsumer } from "./GridProvider";
+import Markdown from "./Markdown";
 import PageContent from "./PageContent";
 
 const BreakpointName = styled.h3`
-  margin-bottom: 0.5rem;
-`;
-
-const BreakpointDesc = styled.p`
-  margin-top: 0;
-  max-width: 400px;
+  font-size: 1rem;
+  margin-top: 2rem;
 `;
 
 const Container = styled.div`
@@ -25,6 +22,18 @@ const Container = styled.div`
   }
 `;
 
+const SectionDesc = styled.p`
+  margin-bottom: 2rem;
+  margin-top: 0;
+  max-width: 400px;
+`;
+
+const SectionName = styled.h2`
+  font-size: 1.5rem;
+  margin-bottom: 0;
+  margin-top: 6rem;
+`;
+
 export default class extends React.Component {
   render() {
     return (
@@ -32,6 +41,22 @@ export default class extends React.Component {
         {({ state }) => (
           <Container>
             <PageContent>
+              <div className={`${state.config.prefix}col`}>
+                <Markdown>
+                  {`## Table of Contents
+
+- [Column Size](#column-size)
+- [Subgrid](#subgrid)
+- [Offset](#offset)
+- [Hiding](#hiding)`}
+                </Markdown>
+              </div>
+              <SectionName
+                className={`${state.config.prefix}col`}
+                id="column-size"
+              >
+                Column Size
+              </SectionName>
               {state.config.breakpoints.map(bp => {
                 const columns = [];
                 for (let i = 0; i < Math.ceil(bp.columns / 2); i++) {
@@ -65,11 +90,11 @@ export default class extends React.Component {
                     <BreakpointName className={`${state.config.prefix}col`}>
                       {bp.name}
                     </BreakpointName>
-                    <BreakpointDesc className={`${state.config.prefix}col`}>
+                    <SectionDesc className={`${state.config.prefix}col`}>
                       These sizing class names start when the screen width is at{" "}
                       {bp.size}
                       px.
-                    </BreakpointDesc>
+                    </SectionDesc>
                     <div className="border">
                       {columns}
                       <div
@@ -85,11 +110,11 @@ export default class extends React.Component {
                 );
               })}
 
-              <BreakpointName className={`${state.config.prefix}col`}>
-                Subgrids
+              <SectionName className={`${state.config.prefix}col`} id="subgrid">
+                Subgrid
                 {!state.config.subgrid ? " (Disabled)" : ""}
-              </BreakpointName>
-              <BreakpointDesc className={`${state.config.prefix}col`}>
+              </SectionName>
+              <SectionDesc className={`${state.config.prefix}col`}>
                 {state.config.subgrid
                   ? `You can add a .${state.config.prefix}
                 grid or .${state.config.prefix}
@@ -100,7 +125,7 @@ export default class extends React.Component {
                     }
                 grid or .${state.config.prefix}
                 row to any col item will provide the original amount of columns. If enabled, the embedded grid would know exactly how many columns are left to use.`}
-              </BreakpointDesc>
+              </SectionDesc>
               {state.config.breakpoints.map((bp, i) => {
                 const columnsAvailable = bp.columns - 1;
                 const classNameSubgrid = `${state.config.prefix}row`;
@@ -146,13 +171,13 @@ export default class extends React.Component {
                 );
               })}
 
-              <BreakpointName className={`${state.config.prefix}col`}>
-                Offsets
-              </BreakpointName>
-              <BreakpointDesc className={`${state.config.prefix}col`}>
+              <SectionName className={`${state.config.prefix}col`} id="offset">
+                Offset
+              </SectionName>
+              <SectionDesc className={`${state.config.prefix}col`}>
                 The following col items will start at a specific column at the
                 specified breakpoint.
-              </BreakpointDesc>
+              </SectionDesc>
 
               {state.config.breakpoints.map((bp, i) => {
                 const classNameOffset = `${state.config.prefix}offset-${
@@ -174,14 +199,14 @@ export default class extends React.Component {
                 );
               })}
 
-              <BreakpointName className={`${state.config.prefix}col`}>
+              <SectionName className={`${state.config.prefix}col`} id="hiding">
                 Hiding
-              </BreakpointName>
-              <BreakpointDesc className={`${state.config.prefix}col`}>
+              </SectionName>
+              <SectionDesc className={`${state.config.prefix}col`}>
                 The following col items will not display at the specified
                 breakpoint. We then bring the back by specifying any col size at
                 the next breakpoint.
-              </BreakpointDesc>
+              </SectionDesc>
 
               {state.config.breakpoints.map((bp, i) => {
                 const className = `${state.config.prefix}col-${bp.name}-0`;

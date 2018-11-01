@@ -5,6 +5,7 @@ import colors from "../utils/color";
 
 const Container = styled.div`
   background: ${colors.background1};
+  padding-bottom: 3rem;
   padding-top: 2rem;
   position: relative;
 `;

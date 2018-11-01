@@ -17,6 +17,7 @@ export default class MyDocument extends Document {
         <Head>
           {this.props.styleTags}
           <link rel="manifest" href="/static/manifest.json" />
+          <link rel="icon" type="image/png" href="/static/icon-32.png" />
           <meta name="theme-color" content="#f1faff" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta

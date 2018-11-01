@@ -2,7 +2,12 @@
 
 _Make a reliable CSS Grid framework at the snap of a function._
 
-This is a work-in-progress of what it would be like to compile CSS Grid frameworks with JavaScript. Please don’t use it yet unless you have talked to [@seejamescode](https://twitter.com/seejamescode). There’s a lot more to get done and you can help on the [GitHub repo](https://github.com/seejamescode/grid-in-js).
+## Table of Contents
+
+- [Benefits](#benefits)
+- [Instructions](#instructions)
+- [Browser Compatibility](#browser-compatibility)
+- [Contribute](#contribute)
 
 ## Benefits
 
@@ -36,6 +41,65 @@ This package lets you configure your grid’s browser compatibility. The trade-o
 ##### \* [CSS Grid Level 2](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout#grid) is still a working draft. Once this support mode is added, it will significantly cut file size due to support for `display: subgrid`.
 
 ##### \*\* This implementation is currently broken on Edge. See [Edge Issue 18676405](https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/18676405/) for more details.
+
+## Instructions
+
+### Install
+
+```bash
+npm install grid-in-js
+```
+
+### Use
+
+```javascript
+import gridInJS from "grid-in-js";
+
+var yourGridCSS = gridInJS({
+  prefix: "bx--", // Prefix for all CSS class names. Can be empty.
+  support: "displayGrid", // `displayFlex`, `cssVariables`, or `displayGrid`
+  maxWidth: 1584, // Max-width of entire grid in pixels. Optional.
+  progressive: false, // Include all browser support fallbacks older than selected support
+  subgrid: true, // Embedded grids and rows know the remaining amount of columns available.
+  breakpoints: [
+    {
+      name: "sm", // Class name prefix fot the breakpoint.
+      size: 0, // Starting screen width in pixels of the breakpoint.
+      columns: 4, // Amount of columns available.
+      gutter: 32, // Space between content of adjacent columns in pixels.
+      margin: 0 // Space on outside of entire grid in pixels.
+    },
+    {
+      name: "md",
+      size: 672,
+      columns: 8,
+      gutter: 32,
+      margin: 16
+    },
+    {
+      name: "lg",
+      size: 1056,
+      columns: 16,
+      gutter: 32,
+      margin: 16
+    },
+    {
+      name: "xl",
+      size: 1312,
+      columns: 16,
+      gutter: 32,
+      margin: 16
+    },
+    {
+      name: "max",
+      size: 1584,
+      columns: 16,
+      gutter: 32,
+      margin: 32
+    }
+  ]
+});
+```
 
 ## Contribute
 
