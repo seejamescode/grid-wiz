@@ -8,6 +8,34 @@ const ReactJson = dynamic(() => import("react-json-view"), {
   ssr: false
 });
 
+const tooltipStyles = `
+  position: relative;
+
+  :before {
+    content: "";
+    border-style: solid;
+    border-width: 8px 16px 8px 0;
+    border-color: transparent black transparent transparent;
+    bottom: 100%;
+    position: absolute;
+    left: calc(50%);
+    transform: rotateZ(270deg);
+  }
+
+  :after {
+    background: black;
+    border-radius: 5px;
+    bottom: calc(100% + 0.5rem);
+    box-sizing: border-box;
+    color: white;
+    font-size: 0.75rem;
+    left: 1rem;
+    padding: 1rem;
+    position: absolute;
+    width: calc(100% - 0.75rem);
+  }
+`;
+
 const Aside = styled.aside`
   background: #f1faff;
   box-sizing: border-box;
@@ -104,6 +132,64 @@ const Aside = styled.aside`
     > .variable-row:hover
     > .click-to-remove {
     display: none !important;
+  }
+
+  .react-json-view
+    > .object-container
+    > .object-content
+    > .object-key-val
+    > .object-container
+    > .object-content
+    > .object-key-val
+    > .object-container
+    > .object-content
+    > .object-key-val
+    > .object-container
+    > .object-content
+    > .variable-row:nth-child(3):focus-within {
+    ${tooltipStyles} :after {
+      content: "Tip: Make sure column counts of different breakpoints are divisible by each other for smooth scaling.";
+    }
+  }
+
+  .react-json-view
+    > .object-container
+    > .object-content
+    > .object-key-val
+    > .object-container
+    > .object-content
+    > .variable-row:nth-child(2):focus-within {
+    ${tooltipStyles} :before {
+      bottom: initial;
+      top: 100%;
+      transform: rotateZ(90deg);
+    }
+
+    :after {
+      bottom: initial;
+      content: "Tip: Review all support modes on the documentation page under 'Browser Compatibility'.";
+      top: calc(100% + 0.5rem);
+      z-index: 1;
+    }
+  }
+
+  .react-json-view
+    > .object-container
+    > .object-content
+    > .object-key-val
+    > .object-container
+    > .object-content
+    > .variable-row:nth-child(4):focus-within,
+  .react-json-view
+    > .object-container
+    > .object-content
+    > .object-key-val
+    > .object-container
+    > .object-content
+    > .variable-row:nth-child(5):focus-within {
+    ${tooltipStyles} :after {
+      content: "Tip: Disabling progressive and subgrid options will reduce the CSS file size.";
+    }
   }
 `;
 
@@ -298,50 +384,22 @@ export default class extends React.Component {
               </AsideNavFlex>
             </AsideNav>
             {this.state.tab === "editor" ? (
-              <React.Fragment>
-                <ReactJson
-                  displayDataTypes={false}
-                  displayObjectSize={false}
-                  enableClipboard={false}
-                  onAdd={edit => makeGridCSS(edit.updated_src)}
-                  onDelete={edit => makeGridCSS(edit.updated_src)}
-                  onEdit={edit => makeGridCSS(edit.updated_src)}
-                  src={state.config}
-                  style={{
-                    background: "white",
-                    minHeight: "10rem",
-                    overflowY: "auto",
-                    padding: "1rem"
-                  }}
-                  theme="summerfruit:inverted"
-                />
-                <NotesTitle>Tips</NotesTitle>
-                <Notes>
-                  <li>
-                    <small>
-                      To help column widths scale between breakpoints, make sure
-                      the next breakpoint’s <code>column</code> is divisible by
-                      the previous breakpoint’s <code>column</code>.
-                    </small>
-                  </li>
-                  <li>
-                    <small>
-                      Disabling <code>progressive</code> and{" "}
-                      <code>subgrid</code> options and decreasing browser
-                      compatibility will reduce file sizes.
-                    </small>
-                  </li>
-                  <li>
-                    <small>
-                      For <code>support</code>, <code>displayGrid</code> has the
-                      smallest file size and browser support.{" "}
-                      <code>displayFlex</code> has the largest file size and
-                      browser support. <code>cssVariables</code> is in the
-                      middle.
-                    </small>
-                  </li>
-                </Notes>
-              </React.Fragment>
+              <ReactJson
+                displayDataTypes={false}
+                displayObjectSize={false}
+                enableClipboard={false}
+                onAdd={edit => makeGridCSS(edit.updated_src)}
+                onDelete={edit => makeGridCSS(edit.updated_src)}
+                onEdit={edit => makeGridCSS(edit.updated_src)}
+                src={state.config}
+                style={{
+                  background: "white",
+                  minHeight: "10rem",
+                  overflowY: "auto",
+                  padding: "1rem"
+                }}
+                theme="summerfruit:inverted"
+              />
             ) : null}
             {this.state.tab === "code" ? (
               <React.Fragment>
