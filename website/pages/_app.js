@@ -24,10 +24,24 @@ injectGlobal`
   }
 
   a {
-    color: lightcoral;
+    color: ${colors.link};
+    text-decoration: none;
 
     :visited {
-      color: lightpink;
+      color: ${colors.link};
+    }
+
+    :hover {
+      color: ${colors.linkHover};
+    }
+
+    :focus {
+      color: ${colors.linkFocus};
+      outline: none;
+    }
+
+    :active {
+      color: ${colors.linkActive};
     }
   }
 `;

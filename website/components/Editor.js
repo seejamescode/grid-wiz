@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import React from "react";
 import styled from "styled-components";
 import saveAs from "file-saver";
+import colors from "../utils/color";
 import { IoIosArrowDropleft, IoIosArrowDroprightCircle } from "react-icons/io";
 import { GridConsumer } from "./GridProvider";
 const ReactJson = dynamic(() => import("react-json-view"), {
@@ -37,16 +38,15 @@ const tooltipStyles = `
 `;
 
 const Aside = styled.aside`
-  background: #f1faff;
+  background: ${colors.background2};
   box-sizing: border-box;
-  color: #403b33;
   height: 100%;
   display: flex;
   flex-direction: column;
   left: calc(100% - 320px);
   margin-right: 0px;
+  overflow-x: hidden;
   overflow-y: auto;
-  padding: 1rem;
   position: fixed;
   top: 0;
   transition: margin-left 100ms ease-in, margin-right 100ms ease-in;
@@ -61,7 +61,7 @@ const Aside = styled.aside`
   }
 
   > *:not(nav) {
-    margin-left: ${props => (props.navCollapsed ? "2.5rem" : null)};
+    margin-left: ${props => (props.navCollapsed ? "3.5rem" : null)};
     transition: margin-left 100ms ease-in;
   }
 
@@ -194,18 +194,24 @@ const Aside = styled.aside`
 `;
 
 const AsideNav = styled.nav`
-  margin-bottom: 1.5rem;
+  padding: 1rem;
 `;
 
 const AsideNavFlex = styled.div`
+  align-items: center;
   display: flex;
-  -webkit-justify-content: space-between;
-  justify-content: space-between;
   height: 2rem;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  flex-shrink: 0;
+  margin-top: 1px;
 `;
 
 const Code = styled.code`
   background: white;
+  color: black;
   overflow: auto;
   padding: 1rem;
 `;
@@ -214,10 +220,12 @@ const CollapseButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
+  margin-right: 1.45rem;
   padding: 0;
   position: relative;
 
   :after {
+    color: ${colors.link};
     content: "Grid Editor";
     font-size: 0.875rem;
     height: 1rem;
@@ -231,82 +239,60 @@ const CollapseButton = styled.button`
   }
 
   svg {
+    fill: ${colors.link};
     height: 1.4rem;
     width: 1.4rem;
   }
 
   :hover {
     :after {
-      color: lightgrey;
+      color: ${colors.linkHover};
     }
 
     svg {
-      fill: ${props => (props.active ? null : "lightgrey")};
+      fill: ${colors.linkHover};
     }
   }
 
   :focus {
     :after {
-      color: grey;
+      color: ${colors.linkFocus};
     }
 
     svg {
-      fill: ${props => (props.active ? null : "grey")};
+      fill: ${colors.linkFocus};
     }
     outline: none;
   }
 `;
 
 const DownloadButton = styled.button`
-  background: none;
-  border: 2px solid lightcoral;
+  background: ${colors.link};
+  border: none;
   cursor: pointer;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  height: 3.25rem;
+  padding: 1rem;
   width: 100%;
 
   :hover {
-    background: lightcoral;
-  }
-`;
-
-const Notes = styled.ul`
-  padding-left: 1rem;
-
-  li {
-    margin-top: 0.5rem;
-
-    :first-of-type {
-      margin-top: 0;
-    }
-  }
-`;
-
-const NotesTitle = styled.h4`
-  margin-bottom: 0;
-`;
-
-const TabButton = styled.button`
-  background: ${props => (props.active ? "black" : "none")};
-  border: none;
-  color: ${props => (props.active ? "white" : null)};
-  display: inline-block;
-  font-size: 1.5rem;
-
-  :hover {
-    background: ${props => (props.active ? null : "lightgrey")};
+    background: ${colors.linkHover};
   }
 
   :focus {
-    background: ${props => (props.active ? null : "grey")};
+    background: ${colors.linkFocus};
     outline: none;
+  }
+
+  :active {
+    background: ${colors.linkActive};
   }
 `;
 
-const Tabs = styled.div`
-  display: inline-block;
-  margin-bottom: 1rem;
+const CodeButton = DownloadButton.extend`
+  margin-left: 1px;
+  position: relative;
+  width: 9.3rem;
 `;
 
 export default class extends React.Component {
@@ -361,57 +347,60 @@ export default class extends React.Component {
                     <IoIosArrowDroprightCircle />
                   )}
                 </CollapseButton>
-                <Tabs>
-                  <TabButton
-                    active={this.state.tab === "editor"}
-                    disabled={
-                      this.state.tab === "editor" || this.state.navCollapsed
-                    }
-                    onClick={() => this.setState({ tab: "editor" })}
-                  >
-                    Editor
-                  </TabButton>
-                  <TabButton
-                    active={this.state.tab === "code"}
-                    disabled={
-                      this.state.tab === "code" || this.state.navCollapsed
-                    }
-                    onClick={() => this.setState({ tab: "code" })}
-                  >
-                    Download
-                  </TabButton>
-                </Tabs>
+                <h2>Grid Editor</h2>
               </AsideNavFlex>
             </AsideNav>
             {this.state.tab === "editor" ? (
-              <ReactJson
-                displayDataTypes={false}
-                displayObjectSize={false}
-                enableClipboard={false}
-                onAdd={edit => makeGridCSS(edit.updated_src)}
-                onDelete={edit => makeGridCSS(edit.updated_src)}
-                onEdit={edit => makeGridCSS(edit.updated_src)}
-                src={state.config}
-                style={{
-                  background: "white",
-                  minHeight: "10rem",
-                  overflowY: "auto",
-                  padding: "1rem"
-                }}
-                theme="summerfruit:inverted"
-              />
-            ) : null}
-            {this.state.tab === "code" ? (
               <React.Fragment>
-                <div>
+                <ReactJson
+                  displayDataTypes={false}
+                  displayObjectSize={false}
+                  enableClipboard={false}
+                  onAdd={edit => makeGridCSS(edit.updated_src)}
+                  onDelete={edit => makeGridCSS(edit.updated_src)}
+                  onEdit={edit => makeGridCSS(edit.updated_src)}
+                  src={state.config}
+                  style={{
+                    background: "white",
+                    minHeight: "10rem",
+                    overflowY: "auto",
+                    padding: "1rem"
+                  }}
+                  theme="summerfruit:inverted"
+                />
+                <Buttons>
                   <DownloadButton
                     disabled={this.state.navCollapsed}
                     onClick={() => this.saveCSS(state.css, state.config.prefix)}
                   >
-                    Download CSS
+                    <div>
+                      Download CSS (
+                      {Math.round(
+                        (encodeURI(state.css).split(/%..|./).length - 1) / 1000
+                      )}
+                      kb)
+                    </div>
                   </DownloadButton>
-                </div>
+                  <CodeButton
+                    disabled={this.state.navCollapsed}
+                    onClick={() => this.setState({ tab: "code" })}
+                  >
+                    <div>View code</div>
+                  </CodeButton>
+                </Buttons>
+              </React.Fragment>
+            ) : null}
+            {this.state.tab === "code" ? (
+              <React.Fragment>
                 <Code>{state.css}</Code>
+                <Buttons>
+                  <DownloadButton
+                    disabled={this.state.navCollapsed}
+                    onClick={() => this.setState({ tab: "editor" })}
+                  >
+                    <div>Return to edit mode</div>
+                  </DownloadButton>
+                </Buttons>
               </React.Fragment>
             ) : null}
           </Aside>

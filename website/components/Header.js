@@ -9,54 +9,56 @@ import { GridConsumer } from "./GridProvider";
 import Markdown from "./Markdown";
 
 const Container = styled.header`
-  padding-top: 2rem;
+  padding-top: 0.9rem;
 `;
 
 const TabAnchor = styled.a`
-  background: ${props =>
-    props.current === props.href ? colors.background1 : colors.background0};
-  display: inline-block;
-  margin-right: -1px;
-  outline: 2px solid silver;
-  outline-offset: -1px;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
-  position: relative;
-  text-decoration: none;
+  && {
+    background: ${props =>
+      props.current === props.href ? colors.background1 : colors.background0};
+    display: inline-block;
+    margin-right: -1px;
+    outline: 2px solid silver;
+    outline-offset: -1px;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    position: relative;
+    text-decoration: none;
 
-  ${props =>
-    props.breakpoints.map(
-      breakpoint => `
+    ${props =>
+      props.breakpoints.map(
+        breakpoint => `
     @media (min-width: ${breakpoint.size}px) {
       padding-left: ${breakpoint.gutter / 2}px;
       padding-right: ${breakpoint.gutter / 2}px;
     }
   `
-    )} :focus {
-    outline-color: blue;
-    z-index: 2;
-  }
+      )} :focus {
+      outline-color: ${colors.linkFocus};
+      z-index: 2;
+    }
 
-  :hover {
-    background: ${colors.background1};
-  }
+    :hover {
+      background: ${colors.background1};
+    }
 
-  :active {
-    outline-color: silver;
-    z-index: 1;
-  }
+    :active {
+      outline-color: silver;
+      z-index: 1;
+    }
 
-  :after {
-    border-bottom: ${props =>
-      props.current === props.href
-        ? `2px solid ${colors.background1}`
-        : "none"};
-    bottom: 0;
-    content: "";
-    left: 1px;
-    position: absolute;
-    width: calc(100% - 2.5px);
-    z-index: 3;
+    :after {
+      border-bottom: ${props =>
+        props.current === props.href
+          ? `2px solid ${colors.background1}`
+          : "none"};
+      bottom: 0;
+      content: "";
+      left: 1px;
+      position: absolute;
+      width: calc(100% - 2.5px);
+      z-index: 3;
+    }
   }
 `;
 
