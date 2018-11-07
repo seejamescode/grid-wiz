@@ -2,7 +2,7 @@ import "./arrayFromPolyfill";
 
 const columns = function(breakpoints, prefix, compat) {
   return `
-  /* By default, span all of the grid columns */
+  ${/* By default, span all of the grid columns */ ""}
   ${compat.DisplayFlex(`
     .${prefix}grid > *,
     .${prefix}row > * {
@@ -10,7 +10,7 @@ const columns = function(breakpoints, prefix, compat) {
     }
   `)}
 
-  /* By default, sxpan all of the grid columns */
+  ${/* By default, sxpan all of the grid columns */ ""}
   ${compat.DisplayGrid(`
   .${prefix}grid > *,
   .${prefix}row > * {
@@ -38,7 +38,7 @@ const columns = function(breakpoints, prefix, compat) {
     .map(breakpoint => {
       const result = `
       ${compat.DisplayGrid(`
-        /* Grid columns */
+        ${/* Grid columns */ ""}
         .${prefix}grid,
         .${prefix}row {
           grid-template-columns: repeat(auto-fill, calc(${100 /

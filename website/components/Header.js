@@ -57,7 +57,7 @@ const TabAnchor = styled.a`
       left: 1px;
       position: absolute;
       width: calc(100% - 2.5px);
-      z-index: 3;
+      z-index: 2;
     }
   }
 `;

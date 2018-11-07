@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Markdown from "markdown-to-jsx";
+import Highlight, { defaultProps } from "prism-react-renderer";
 
 const MarkdownStyled = styled(Markdown)`
   position: relative;
@@ -21,10 +22,10 @@ const MarkdownStyled = styled(Markdown)`
   h2 {
     font-size: 1.5rem;
     margin-top: 6rem;
+  }
 
-    :first-of-type {
-      margin-top: 0;
-    }
+  #table-of-contents {
+    margin-top: 0;
   }
 
   h3 {
@@ -67,13 +68,45 @@ const MarkdownStyled = styled(Markdown)`
     }
   }
 `;
+const Pre = styled.pre`
+  background: #000 !important;
+  margin: 0;
+  overflow: auto;
+  padding: 1rem;
+  white-space: pre-wrap;
+`;
 
 export default class extends React.Component {
   render() {
-    return (
-      <MarkdownStyled className={`markdown ${this.props.prefix}col`}>
-        {this.props.children}
-      </MarkdownStyled>
+    const markdown = this.props.children.split("```").map(
+      (markdown, index) =>
+        index % 2 ? (
+          <Highlight
+            {...defaultProps}
+            code={markdown
+              .split("\n")
+              .slice(1, -1)
+              .join("\n")}
+            language={markdown.split("\n")[0]}
+          >
+            {({ className, style, tokens, getLineProps, getTokenProps }) => (
+              <Pre className={className} style={style}>
+                {tokens.map((line, i) => (
+                  <div {...getLineProps({ line, key: i })}>
+                    {line.map((token, key) => (
+                      <span {...getTokenProps({ token, key })} />
+                    ))}
+                  </div>
+                ))}
+              </Pre>
+            )}
+          </Highlight>
+        ) : (
+          <MarkdownStyled className={`markdown ${this.props.prefix}col`}>
+            {markdown}
+          </MarkdownStyled>
+        )
     );
+    return markdown;
   }
 }

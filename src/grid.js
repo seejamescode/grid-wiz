@@ -17,12 +17,12 @@ const grid = function(breakpoints, maxWidth, prefix, compat) {
       `)}
 
       ${compat.CSSVariablesOnly(`
-        /* percentage width of item */
+        ${/* percentage width of item */ ""}
         --${prefix}x-col-percentage: 1;
       `)}
 
       ${compat.DisplayGrid(`
-        /* column width of item */
+        ${/* column width of item */ ""}
         --${prefix}x-col-columns: 1;
         display: grid;
       `)}
