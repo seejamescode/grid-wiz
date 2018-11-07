@@ -1,7 +1,7 @@
 import columns from "./columns";
 import grid from "./grid";
 
-export default function gridInJS(config) {
+export default function gridWiz(config) {
   const breakpoints = config.breakpoints ? config.breakpoints : [];
   const format = config.minified === false ? "keep-breaks" : false;
   const prefix = config.prefix ? config.prefix : "";

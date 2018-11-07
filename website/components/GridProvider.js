@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import config from "../utils/grid";
-import gridInJS from "../../dist/grid-in-js.umd";
+import gridWiz from "../../dist/grid-wiz.umd";
 
 // first we will make a new context
 const GridContext = React.createContext();
@@ -8,7 +8,7 @@ const GridContext = React.createContext();
 // Then create a provider Component
 class GridProvider extends Component {
   state = {
-    css: gridInJS(config),
+    css: gridWiz(config),
     config
   };
 
@@ -74,7 +74,7 @@ class GridProvider extends Component {
 
             this.setState({
               config: configValidated,
-              css: gridInJS(configValidated)
+              css: gridWiz(configValidated)
             });
           }
         }}

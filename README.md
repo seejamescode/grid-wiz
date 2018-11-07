@@ -1,6 +1,6 @@
-# Grid-in-JS
+# Grid Wiz
 
-_Make a reliable CSS Grid framework at the snap of a function._
+_Make a CSS Grid framework with custom browser support at the snap of a function._
 
 ## Table of Contents
 
@@ -21,10 +21,10 @@ Different experiences have different browser requirements based on the users vis
 
 ### JavaScript? 🤔
 
-The truth is that the name Grid-in-JS is a joke to weed out critics that don’t try stuff before critiquing it. However, we get a lot of flexibility by writing this package in isomorphic JavaScript:
+We get a lot of flexibility by writing this package in isomorphic JavaScript:
 
-- Wanna configure your grid framework and just copy and paste the CSS straight from [this project’s website](https://grid-in-js.now.sh)? Go ahead.
-- Need to distribute your grid framework to multiple projects with a Node package? Add Grid-in-JS as a dependency and compile it there.
+- Wanna configure your grid framework and just copy and paste the CSS straight from [this project’s website](https://grid-wiz.now.sh)? Go ahead.
+- Need to distribute your grid framework to multiple projects with a Node package? Add Grid Wiz as a dependency and compile it there.
 - Are you _bleeding-edge_ enough to compile the grid framework directly in your client-side code? Now we’re cooking!
 
 ## Browser Compatibility
@@ -47,15 +47,15 @@ This package lets you configure your grid’s browser compatibility. The trade-o
 ### Install
 
 ```bash
-npm install grid-in-js
+npm install grid-wiz
 ```
 
 ### Use
 
 ```javascript
-import gridInJS from "grid-in-js";
+import gridWiz from "grid-wiz";
 
-var yourGridCSS = gridInJS({
+var yourGridCSS = gridWiz({
   prefix: "bx--", // Prefix for all CSS class names. Can be empty.
   support: "displayGrid", // `displayFlex`, `cssVariables`, or `displayGrid`
   maxWidth: 1584, // Max-width of entire grid in pixels. Optional.

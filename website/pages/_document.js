@@ -22,8 +22,11 @@ export default class MyDocument extends Document {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta
             name="description"
-            content="Make a reliable CSS Grid framework at the snap of a function."
+            content="Make a CSS Grid framework with custom browser support at the snap of a function."
           />
+          <meta property="og:image" content="/static/thumbnail.png" />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://grid-wiz.now.sh" />
           <link
             rel="apple-touch-icon"
             sizes="57x57"

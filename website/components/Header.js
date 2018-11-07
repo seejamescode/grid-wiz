@@ -92,7 +92,7 @@ class Header extends React.Component {
                 {`${readme.split("##")[0]}
 v${
                   meta.version
-                } | [GitHub](https://github.com/seejamescode/grid-in-js) | [npm](https://www.npmjs.com/package/grid-in-js)
+                } | [GitHub](https://github.com/seejamescode/grid-wiz) | [npm](https://www.npmjs.com/package/grid-wiz)
 `}
               </Markdown>
             </div>

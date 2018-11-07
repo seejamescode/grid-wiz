@@ -39,7 +39,7 @@ const MarkdownStyled = styled(Markdown)`
     line-height: 1.35;
     margin-bottom: 1rem;
     margin-top: 0;
-    max-width: 460px;
+    max-width: 360px;
   }
 
   table {

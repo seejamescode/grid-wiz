@@ -1,8 +1,8 @@
 {
-  "name": "Grid-in-JS",
-  "short_name": "Grid-in-JS",
+  "name": "Grid Wiz",
+  "short_name": "Grid Wiz",
   "display": "standalone",
-  "description": "Make a reliable CSS Grid framework at the snap of a function.",
+  "description": "Make a CSS Grid framework with custom browser support at the snap of a function.",
   "icons": [
     {
       "src": "static/icon-192.png",

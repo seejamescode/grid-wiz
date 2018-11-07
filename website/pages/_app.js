@@ -66,7 +66,7 @@ export default class MyApp extends App {
             {({ state }) => (
               <React.Fragment>
                 <Head>
-                  <title>Grid-in-JS</title>
+                  <title>Grid Wiz</title>
                   <style dangerouslySetInnerHTML={{ __html: state.css }} />
                 </Head>
                 <Component {...pageProps} {...state} />

@@ -1,15 +1,15 @@
 {
-  "name": "grid-in-js-website",
+  "name": "grid-wiz-website",
   "version": "0.0.1",
-  "description": "Website to show off capabilities of Grid-in-JS.",
-  "homepage": "https://grid-in-js.now.sh",
+  "description": "Website to show off capabilities of Grid Wiz.",
+  "homepage": "https://grid-wiz.now.sh",
   "repository": {
     "type": "git",
-    "url": "https://github.com/seejamescode/grid-in-js.git"
+    "url": "https://github.com/seejamescode/grid-wiz.git"
   },
   "private": true,
   "scripts": {
-    "deploy": "npm run build && now && now alias && now scale grid-in-js.now.sh 1 1 && now rm grid-in-js -s -y",
+    "deploy": "npm run build && now && now alias && now scale grid-wiz.now.sh 1 1 && now rm grid-wiz -s -y",
     "dev": "next -p 4000",
     "build": "next build",
     "now-build": "true",

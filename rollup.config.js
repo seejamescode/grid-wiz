@@ -10,7 +10,7 @@ export default [
   {
     input,
     output: {
-      name: "gridInJS",
+      name: "gridWiz",
       file: pkg.browser,
       format: "umd"
     },

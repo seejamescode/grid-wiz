@@ -1,14 +1,14 @@
 {
-  "name": "grid-in-js",
-  "version": "0.1.4",
-  "description": "Make a reliable CSS Grid framework at the snap of a function.",
-  "main": "dist/grid-in-js.cjs.js",
-  "module": "dist/grid-in-js.esm.js",
-  "browser": "dist/grid-in-js.umd.js",
-  "homepage": "https://grid-in-js.now.sh",
+  "name": "grid-wiz",
+  "version": "1.0.0",
+  "description": "Make a CSS Grid framework with custom browser support at the snap of a function.",
+  "main": "dist/grid-wiz.cjs.js",
+  "module": "dist/grid-wiz.esm.js",
+  "browser": "dist/grid-wiz.umd.js",
+  "homepage": "https://grid-wiz.now.sh",
   "repository": {
     "type": "git",
-    "url": "https://github.com/seejamescode/grid-in-js.git"
+    "url": "https://github.com/seejamescode/grid-wiz.git"
   },
   "scripts": {
     "build": "rollup -c",
