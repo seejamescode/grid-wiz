@@ -17,7 +17,8 @@
     "deploy:npm": "npm run build && npm login && npm publish",
     "prepare": "npm run build && cd website && npm i && cd ..",
     "start": "npm run  && concurrently \"rollup -c -w\" \"cd website && npm run dev\"",
-    "test": "jest --coverage && npm run build"
+    "test": "jest --coverage && npm run build",
+    "test:snapshots": "jest --updateSnapshot"
   },
   "author": "",
   "license": "MIT",
