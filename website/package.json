@@ -21,7 +21,7 @@
     "file-saver": "^2.0.0-rc.3",
     "gzip-js": "^0.3.2",
     "markdown-to-jsx": "^6.7.4",
-    "next": "^7.0.2",
+    "next": "^9.3.2",
     "next-offline": "^3.0.3",
     "prettier": "^1.14.3",
     "prism-react-renderer": "^0.1.4",
